@@ -1,4 +1,5 @@
 <?php
+if(!is_dir('cookies')) mkdir('cookies');
 /*
     GET Clappr_Player.php?id=[GOOGLE DRIVE ID]
 
@@ -13,7 +14,7 @@ date_default_timezone_set("Europe/Tirane");
 
     function Get_Thumbnail($id)
     {
-		$Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
+	$Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
         return $Get_Thumbnail;
     }
 
@@ -41,9 +42,9 @@ $image = Get_Thumbnail($get_stream_id);
 $type = $generate_stream_url->getContentType();
 ?>
 <html>
-   	<head>
-	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<title><?php if ($title){ echo $title; }else{ echo "Google Drive Player"; } ?></title>
+   <head>
+   <meta content="width=device-width, initial-scale=1" name="viewport">
+   <title><?php if ($title){ echo $title; }else{ echo "Google Drive Player"; } ?></title>
     <link rel="shortcut icon" href="https://kodi.al/panel.ico"/>
     <link rel="icon" href="https://kodi.al/panel.ico"/>
     <meta name="description" content="<?php if ($title){ echo $title; }else{ echo "Google Drive Player"; } ?>" />
@@ -55,13 +56,13 @@ $type = $generate_stream_url->getContentType();
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0F0">
     <!-- CDN Player -->
-	<script src="//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/dash-shaka-playback@latest/dist/dash-shaka-playback.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js"></script>
-	</head>
+   <script src="//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/dash-shaka-playback@latest/dist/dash-shaka-playback.min.js"></script>
+   <script src="//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js"></script>
+</head>
    <body bgcolor="black" style="margin:0" oncontextmenu="return false" onkeydown="return false">
    <div id="player"></div>
       <script>
@@ -72,23 +73,23 @@ $type = $generate_stream_url->getContentType();
                  mimeType: "<?php if ($type){ echo $type; }else{ echo 'video/mp4'; } ?>",
                  plugins: [LevelSelector, ChromecastPlugin, ClapprPip.PipButton, ClapprPip.PipPlugin, DashShakaPlayback, Clappr.MediaControl, PlaybackRatePlugin],
                  events: {
-					 onReady: function()
-					 {
-					 var plugin = this.getPlugin('click_to_pause');
-					 plugin && plugin.disable();
-					 },
-					},
+		 onReady: function()
+			{
+			var plugin = this.getPlugin('click_to_pause');
+			plugin && plugin.disable();
+			},
+		},
                  height: '100%',
                  width: '100%',
-				 mediacontrol: {
-					 seekbar: "#0F0",
-					 buttons: "#0F0"
-					},
+			mediacontrol: {
+			seekbar: "#0F0",
+			buttons: "#0F0"
+			},
                  autoPlay: false,
                  watermark: "https://png.kodi.al/tv/albdroid/logo_bar.png",
-				 position: 'top-right',
+		 position: 'top-right',
                  watermarkLink: "http://albdroid.al/",
-			     poster: "<?php if ($image){ echo $image; }else{ echo 'https://png.kodi.al/tv/albdroid/logo_bar.png'; } ?>",
+	         poster: "<?php if ($image){ echo $image; }else{ echo 'https://png.kodi.al/tv/albdroid/logo_bar.png'; } ?>",
                  shakaConfiguration: {
                  manifest: {retryParameters: {maxAttempts: Infinity}},
                  streaming: {retryParameters: {maxAttempts: Infinity}},

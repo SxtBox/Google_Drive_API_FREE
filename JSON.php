@@ -1,4 +1,5 @@
 <?php
+if(!is_dir('cookies')) mkdir('cookies');
 /*
     GET JSON.php?id=[GOOGLE DRIVE ID]
 
@@ -13,7 +14,7 @@ date_default_timezone_set("Europe/Tirane");
 
     function Get_Thumbnail($id)
     {
-		$Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
+        $Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
         return $Get_Thumbnail;
     }
 

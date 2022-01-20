@@ -1,4 +1,5 @@
 <?php
+if(!is_dir('cookies')) mkdir('cookies');
 /*
     GET JW_Player.php?id=[GOOGLE DRIVE ID]
 
@@ -13,7 +14,7 @@ date_default_timezone_set("Europe/Tirane");
 
     function Get_Thumbnail($id)
     {
-		$Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
+	$Get_Thumbnail = sprintf('https://drive.google.com/thumbnail?id=%s&authuser=0&sz=w640-h360-n-k-rw', $id);
         return $Get_Thumbnail;
     }
 
@@ -44,13 +45,13 @@ $type = $generate_stream_url->getContentType();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><?php if ($title){ echo $title; }else{ echo "Google Drive Player"; } ?></title>
+    <title><?php if ($title){ echo $title; }else{ echo "Google Drive Player"; } ?></title>
     <link rel="shortcut icon" href="https://kodi.al/panel.ico"/>
     <link rel="icon" href="https://kodi.al/panel.ico"/>
     <meta name="robots" content="noindex">
     <meta name="referrer" content="never" />
     <meta name="referrer" content="no-referrer" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 <style type="text/css">
 body {
     padding: 0;
@@ -229,7 +230,7 @@ videoPlayer.setup({
 		
         "file": "<?php if ($file){ echo $file; }else{ echo 'https://trc4.com/no_source.mp4'; } ?>",
         "type": "<?php if ($type){ echo $type; }else{ echo 'video/mp4'; } ?>",
-		"image": "<?php if ($image){ echo $image; }else{ echo 'https://png.kodi.al/tv/albdroid/logo_bar.png'; } ?>",
+	"image": "<?php if ($image){ echo $image; }else{ echo 'https://png.kodi.al/tv/albdroid/logo_bar.png'; } ?>",
         "label": "HD"
     }],
     title: "<?php echo $title; ?>",
@@ -254,11 +255,11 @@ skin: {
 
 (function($) {
     function getTimer(obj) {
-        return obj.data("swd_timer")
+    return obj.data("swd_timer")
     }
 
     function setTimer(obj, timer) {
-        obj.data("swd_timer", timer)
+    obj.data("swd_timer", timer)
     }
     $.fn.showWithDelay = function(delay) {
         var self = this;
